@@ -47,7 +47,6 @@ class SignupPage extends Component {
         occupation: false
       },
 
-      signedIn: false,
       usernameValid: true,
     };
   }
@@ -112,7 +111,6 @@ class SignupPage extends Component {
       dob,
       schoolyear
     });
-    this.setState({ signedIn : true });
   }
 
   // Conditions hold `true` iff there is an error.
@@ -133,11 +131,6 @@ class SignupPage extends Component {
     
     if(isLoggedIn) {
       this.props.onSuccessfulAuth();
-    }
-
-    if(this.state.signedIn) {
-      console.log("SIGNED IN!", this.state);
-      return <Redirect to='/home'/>
     }
 
     const days = (this.state.month === 'Month' || this.state.year === 'Year') ? this.getDays(moment().month(), moment().year()) : this.getDays(moment.monthsShort().indexOf(this.state.month)+1, this.state.year);
